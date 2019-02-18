@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Guestbook index{% endblock %}
+
+{% block body %}
+    <h1>Guestbook index</h1>
+
+    {# total items count #}
+    <div class="count">
+        {{ pagination.getTotalItemCount }}
+    </div>
+    <table class="table">
+        <tr>
+            {# sorting of properties based on query components #}
+            <th>{{ knp_pagination_sortable(pagination, 'Id', 'guestbook.id') }}</th>
+            <th{% if pagination.isSorted('guestbook.username') %} class="sorted"{% endif %}>{{ knp_pagination_sortable(pagination, 'Username', 'guestbook.username') }}</th>
+            <th>{{ knp_pagination_sortable(pagination, 'Email', 'guestbook.email') }}</th>
+            <th>Actions</th>
+        </tr>
+
+        {# table body #}
+        {% for guestbook in pagination %}
+            <tr>
+                <td>{{ guestbook.id }}</td>
+                <td>{{ guestbook.username }}</td>
+                <td><a href="mailto:{{ guestbook.email }}">{{ guestbook.email }}</a></td>
+                {#<td>{{ guestbook.homepage }}</td>#}
+                {#<td>{{ guestbook.text }}</td>#}
+                <td>
+                    <a href="{{ path('guestbook_show', {'id': guestbook.id}) }}">show</a>
+                    {#<a href="{{ path('guestbook_edit', {'id': guestbook.id}) }}">edit</a>#}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+    </table>
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+
+    <a href="{{ path('guestbook_new') }}">Create new</a>
+{% endblock %}
