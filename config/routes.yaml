@@ -1,3 +1,5 @@
 index:
     path: /
     controller: App\Controller\GuestbookController::index
+app_logout:
+    path: /logout
