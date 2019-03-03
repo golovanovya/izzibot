@@ -28,7 +28,7 @@
                 {#<td>{{ guestbook.text }}</td>#}
                 <td>
                     <a href="{{ path('guestbook_show', {'id': guestbook.id}) }}">show</a>
-                    {#<a href="{{ path('guestbook_edit', {'id': guestbook.id}) }}">edit</a>#}
+                    <a href="{{ path('guestbook_edit', {'id': guestbook.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}

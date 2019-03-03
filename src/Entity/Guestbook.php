@@ -3,9 +3,11 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\GuestbookRepository")
+ * @Gedmo\Loggable()
  */
 class Guestbook
 {
@@ -19,21 +21,25 @@ class Guestbook
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Gedmo\Versioned
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Gedmo\Versioned
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Gedmo\Versioned
      */
     private $homepage;
 
     /**
      * @ORM\Column(type="text")
+     * @Gedmo\Versioned
      */
     private $text;
 
